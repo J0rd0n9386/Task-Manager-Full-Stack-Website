@@ -1,0 +1,814 @@
+/* =========================================
+   Task Manager Header Styles
+   ========================================= */
+
+.task-header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  position: sticky;
+  top: 0;
+  z-index: 1000; /* Keeps the header above your tasks when scrolling */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* Logo Styling */
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.header-logo span {
+  background: linear-gradient(to right, #4f46e5, #9333ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Navigation Layout */
+.header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Base Link Styling */
+.header-nav a {
+  text-decoration: none;
+  color: #4b5563; /* Medium Gray */
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 999px; /* Gives nice pill-shaped buttons */
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
+}
+
+/* Hover State */
+.header-nav a:hover {
+  background-color: #f3f4f6;
+  color: #111827;
+}
+
+/* Active State - react-router-dom automatically handles this */
+.header-nav a.active {
+  background-color: #e0e7ff; /* Light indigo background */
+  color: #4338ca; /* Dark indigo text */
+  border: 1px solid #c7d2fe;
+}
+
+/* Responsive adjustments for tablets and larger screens */
+@media (min-width: 768px) {
+  .header-container {
+    flex-direction: row;
+  }
+  .header-logo {
+    margin-bottom: 0;
+  }
+}
+/* =========================================
+   Register User Component Styles
+   ========================================= */
+
+.register-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f3f4f6; /* Light grey modern background */
+  padding: 20px;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-card {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08); /* Soft drop shadow */
+}
+
+.register-card h2 {
+  margin-top: 0;
+  margin-bottom: 28px;
+  color: #111827;
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between inputs */
+}
+
+.register-form input {
+  padding: 14px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #374151;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Placeholder styling */
+.register-form input::placeholder {
+  color: #9ca3af;
+}
+
+/* Input focus effect */
+.register-form input:focus {
+  border-color: #3b82f6; /* Modern Blue */
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15); /* Soft blue glow */
+}
+
+/* Button styling */
+.register-form button {
+  margin-top: 8px;
+  background-color: #2563eb;
+  color: white;
+  padding: 14px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+/* Button hover and active states */
+.register-form button:hover {
+  background-color: #1d4ed8;
+}
+
+.register-form button:active {
+  transform: scale(0.98); /* Slight click effect */
+}
+/* =========================================
+   Premium Login Component Styles
+   ========================================= */
+
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* Subtle gradient background */
+  background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  padding: 20px;
+}
+
+.login-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 32px;
+  border-radius: 16px;
+  /* Soft, layered premium shadow */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.login-card h2 {
+  margin: 0 0 8px 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.input-group input {
+  padding: 12px 16px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #0f172a;
+  background-color: #f8fafc;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+}
+
+.input-group input::placeholder {
+  color: #94a3b8;
+}
+
+/* Premium Focus Glow Effect */
+.input-group input:focus {
+  border-color: #6366f1; /* Premium Indigo Color */
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+}
+
+/* Premium Dark Button */
+.login-btn {
+  margin-top: 12px;
+  background: #0f172a; /* Slate 900 */
+  color: #ffffff;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(15, 23, 42, 0.2);
+}
+
+.login-btn:hover {
+  background: #1e293b;
+  box-shadow: 0 6px 12px rgba(15, 23, 42, 0.3);
+}
+
+.login-btn:active {
+  transform: translateY(2px);
+}
+/* ============================================
+   🌑 डार्क प्रोफ़ेशनल बैकग्राउंड (बॉडी)
+   ============================================ */
+body {
+  background: linear-gradient(145deg, #0a0a12 0%, #12121f 50%, #0d0d18 100%);
+  color: #e2e8f0;
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* ============================================
+   📝 क्रिएट टास्क रैपर
+   ============================================ */
+.create-task-wrapper {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 35px 30px;
+  background: rgba(18, 18, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255,255,255,0.05);
+}
+
+.create-task-wrapper h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 6px;
+  background: linear-gradient(to right, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.create-task-wrapper p {
+  text-align: center;
+  color: #94a3b8;
+  margin-bottom: 28px;
+  font-size: 1rem;
+}
+
+/* लेबल */
+.create-task-wrapper label {
+  display: block;
+  margin: 18px 0 6px 4px;
+  font-weight: 600;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  letter-spacing: 0.4px;
+}
+
+/* इनपुट और सेलेक्ट */
+.create-task-wrapper input[type="text"],
+.create-task-wrapper select {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  font-size: 1rem;
+  color: #ffffff;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.create-task-wrapper input[type="text"]:focus,
+.create-task-wrapper select:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.create-task-wrapper input[type="text"]::placeholder {
+  color: #64748b;
+}
+
+/* सेलेक्ट कस्टम ऐरो */
+.create-task-wrapper select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  cursor: pointer;
+}
+
+/* सबमिट बटन */
+.create-task-wrapper button[type="submit"] {
+  width: 100%;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, #8b74f7, #ea5c8b);
+  border: none;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  cursor: pointer;
+  margin-top: 24px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(139, 116, 247, 0.35);
+}
+
+.create-task-wrapper button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(234, 92, 139, 0.5);
+}
+
+.create-task-wrapper button[type="submit"]:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.create-task-wrapper button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  filter: grayscale(20%);
+}
+
+/* ============================================
+   📋 टास्क लिस्ट (GetAllTask)
+   ============================================ */
+.task-list-wrapper {
+  max-width: 900px;
+  margin: 0 auto 40px;
+  padding: 30px 25px;
+  background: rgba(18, 18, 30, 0.65);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
+}
+
+.task-list-wrapper h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 22px;
+  background: linear-gradient(to right, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* लोडिंग / खाली */
+.task-list-wrapper > p {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 16px;
+}
+
+/* कार्ड */
+.task-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.task-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.04), transparent);
+  transition: left 0.6s ease;
+}
+
+.task-card:hover::before {
+  left: 100%;
+}
+
+.task-card:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.6);
+}
+
+.task-card h3 {
+  margin: 0 0 8px 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.task-card > p {
+  margin: 0 0 8px 0;
+  color: #cbd5e1;
+  font-size: 0.9rem;
+}
+
+/* स्टेटस बैज */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.status-badge.pending {
+  background: rgba(250, 204, 21, 0.2);
+  color: #facc15;
+  border: 1px solid rgba(250, 204, 21, 0.3);
+}
+
+.status-badge.in-progress {
+  background: rgba(96, 165, 250, 0.2);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.3);
+}
+
+.status-badge.completed {
+  background: rgba(74, 222, 128, 0.2);
+  color: #4ade80;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+/* एक्शन बटन */
+.edit-btn,
+.delete-btn {
+  padding: 8px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  margin-right: 8px;
+  margin-top: 6px;
+}
+
+.edit-btn {
+  background: rgba(167, 139, 250, 0.25);
+  color: #c4b5fd;
+  border: 1px solid rgba(167, 139, 250, 0.4);
+}
+
+.edit-btn:hover {
+  background: #a78bfa;
+  color: #0a0a12;
+  box-shadow: 0 6px 18px rgba(167, 139, 250, 0.5);
+  transform: translateY(-2px);
+}
+
+.delete-btn {
+  background: rgba(248, 113, 113, 0.22);
+  color: #fca5a5;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+}
+
+.delete-btn:hover {
+  background: #f87171;
+  color: #0a0a12;
+  box-shadow: 0 6px 18px rgba(248, 113, 113, 0.5);
+  transform: translateY(-2px);
+}
+
+/* अपडेट फ़ॉर्म (अंदर कार्ड में) */
+.task-card form {
+  margin-top: 12px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.task-card form input,
+.task-card form select,
+.task-card form button {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 10px 14px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.task-card form input:focus,
+.task-card form select:focus {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+}
+
+.task-card form button {
+  background: linear-gradient(135deg, #8b74f7, #ea5c8b);
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  padding: 10px 18px;
+}
+
+.task-card form button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(139, 116, 247, 0.4);
+}
+
+/* ============================================
+   📱 रिस्पॉन्सिव
+   ============================================ */
+@media (max-width: 700px) {
+  .create-task-wrapper,
+  .task-list-wrapper {
+    margin: 20px 15px;
+    padding: 20px 16px;
+    border-radius: 20px;
+  }
+
+  .task-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .task-card form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+
+/* ऑटोफ़िल इनपुट का डार्क बैकग्राउंड */
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #1a1a2e inset;
+  -webkit-text-fill-color: #fff;
+}
+/* ===== सर्च कंटेनर ===== */
+.search-container {
+  display: flex;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  margin: 20px auto;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  padding: 6px 18px;
+  transition: all 0.3s ease;
+}
+
+.search-container:focus-within {
+  border-color: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* सर्च आइकन */
+.search-icon {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: #94a3b8;
+  transition: color 0.2s;
+}
+
+.search-container:focus-within .search-icon {
+  color: #a78bfa;
+}
+
+/* इनपुट फ़ील्ड */
+.search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  font-size: 1rem;
+  color: #ffffff;
+  font-family: inherit;
+}
+
+.search-input::placeholder {
+  color: #64748b;
+  font-weight: 400;
+}
+
+/* रिस्पॉन्सिव */
+@media (max-width: 600px) {
+  .search-container {
+    margin: 15px;
+    padding: 4px 14px;
+  }
+
+  .search-input {
+    font-size: 0.9rem;
+  }
+}
+/* ============================================
+   👤 प्रीमियम प्रोफ़ाइल कार्ड
+   ============================================ */
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 20px;
+}
+
+.profile-card {
+  background: rgba(18, 18, 30, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 40px 35px;
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-3px);
+}
+
+/* प्रोफ़ाइल अवतार (अगर आप इमेज लगाना चाहें तो) */
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #a78bfa, #f472b6);
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);
+}
+
+/* हेडिंग */
+.profile-card h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+  background: linear-gradient(to right, #a78bfa, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* एक जानकारी की लाइन */
+.profile-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: background 0.2s;
+}
+
+.profile-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* आइकॉन (emoji या फ़ॉन्ट आइकॉन) */
+.profile-icon {
+  font-size: 1.2rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(167, 139, 250, 0.2);
+  border-radius: 50%;
+  color: #a78bfa;
+}
+
+/* टेक्स्ट */
+.profile-text {
+  font-size: 1rem;
+  color: #e2e8f0;
+  font-weight: 500;
+}
+
+/* मैसेज और लॉगिन लिंक */
+.profile-message {
+  text-align: center;
+  color: #94a3b8;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+}
+
+.profile-login-link {
+  display: inline-block;
+  text-align: center;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #a78bfa, #f472b6);
+  border-radius: 12px;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.profile-login-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(167, 139, 250, 0.5);
+}
+
+/* रिस्पॉन्सिव */
+@media (max-width: 500px) {
+  .profile-card {
+    padding: 25px 20px;
+  }
+}
