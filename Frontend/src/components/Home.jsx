@@ -3,11 +3,13 @@ import React from 'react'
 export const Home = () => {
   return (
     
-      <img src="./public/img.jpg" alt=""   style={{ 
-    width: "1400px",      
-    height: "500px",    
-    objectFit: "cover"  
-  }}/>
+    <div>
+        <h1>Welcome to Task Manager</h1>
+        <p>Organize your daily work efficiently with Task Manager — a modern productivity app 
+          <br />
+          designed to help you create, track, update, and complete tasks with ease. Manage priorities, 
+          deadlines, and progress in one place with a clean, user-friendly interface. Stay focused, boost productivity, and never miss an important task again.</p>
+    </div>
     
   )
 }

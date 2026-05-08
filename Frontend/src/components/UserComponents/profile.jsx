@@ -11,7 +11,7 @@ const Profile = () => {
     const fetchProfile = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-        const res = await axios.get("http://localhost:8000/api/profile", {
+        const res = await axios.get("https://task-manager-full-stack-website.onrender.com/api/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(res.data.data.user);

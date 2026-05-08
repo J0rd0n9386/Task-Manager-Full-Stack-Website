@@ -13,7 +13,7 @@ const GetAllTask = ({refresh}) => {
 useEffect(() => {
     const fetchdata = async ()=>{
      try {
-        const res = await axios.get("http://localhost:8000/api/getTasks",{
+        const res = await axios.get("https://task-manager-full-stack-website.onrender.com/api/getTasks",{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -33,7 +33,7 @@ const deleteTask = async (taskId) => {
     if (!window.confirm("Are you sure you want to delete this task?")) return
 
     try {
-        await axios.delete(`http://localhost:8000/api/deleteTask/${taskId}`, {
+        await axios.delete(`https://task-manager-full-stack-website.onrender.com/api/deleteTask/${taskId}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }

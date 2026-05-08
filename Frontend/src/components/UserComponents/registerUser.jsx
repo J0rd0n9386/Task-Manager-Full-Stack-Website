@@ -20,7 +20,7 @@ const RegisterUser = () => {
 
     try {
       const result = await axios.post(
-        "http://localhost:8000/api/register",  
+        "https://task-manager-full-stack-website.onrender.com/api/register",  
         { email, password, fullname},
         
       );

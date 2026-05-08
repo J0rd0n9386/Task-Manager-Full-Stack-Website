@@ -8,7 +8,7 @@ const Logout = () => {
   useEffect(() => {
     const doLogout = async () => {
       try { await axios.post(
-          "http://localhost:8000/api/logout",
+          "https://task-manager-full-stack-website.onrender.com/api/logout",
           {},
           { withCredentials: true }
         );
