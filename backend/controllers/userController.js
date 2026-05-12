@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
+import { uploadOnCloudinary } from "../utils/cloudinary.js";
 dotenv.config();
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -39,12 +40,9 @@ const registerUser = asyncHandler(async (req, res) => {
   }
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  const user = await User.create({
-    email,
-    password: hashedPassword,
-    fullname,
-    username: email.split("@")[0],
-  });
+
+
+ 
   let createdUser = user.toObject();
   delete createdUser.password;
 
@@ -74,6 +72,40 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 //////////////////////////////////////////////////////////////////////////////////
 
+const updateAvatar = asyncHandler(async (req, res) => {
+  const avatarLocalPath = req.file?.path;
+
+  if (!avatarLocalPath) {
+    throw new ApiError(400, "Avatar file is required");
+  }
+
+  const uploadedAvatar = await uploadOnCloudinary(avatarLocalPath);
+
+  if (!uploadedAvatar) {
+    throw new ApiError(500, "Avatar upload failed");
+  }
+
+  const user = await User.findByIdAndUpdate(
+    req.user._id,
+    {
+      $set: {
+        avatar: uploadedAvatar.secure_url || uploadedAvatar.url,
+      },
+    },
+    { new: true }
+  ).select("-password -refreshToken");
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        user,
+      },
+      "Avatar updated successfully"
+    )
+  );
+});
+//////////////////////////////////////////////////////////////////////////////////////////////////
 const Login = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -147,4 +179,4 @@ const verifyUser = asyncHandler(async(req,res)=>{
   return res.status(200).json({Auth:true , user: req.user});
 })
 
-export { registerUser, Login, Logout, profile,verifyUser };
+export { registerUser, Login, Logout, profile,verifyUser,updateAvatar };

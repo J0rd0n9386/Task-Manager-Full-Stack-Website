@@ -1,38 +1,90 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
-import '../../App.css';
+import "../../App.css";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
   const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState("");
 
+  // Fetch Profile
   useEffect(() => {
-    const fetchProfile = async () => {
-      try {
-        const token = localStorage.getItem("accessToken");
-        const res = await axios.get("https://task-manager-full-stack-website.onrender.com/api/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setUser(res.data.data.user);
-      } catch (err) {
-        if (err.response?.status === 401) {
-          setMessage("User not authorized. Please login.");
-        } else {
-          setMessage("Something went wrong.");
-        }
-      }
-    };
     fetchProfile();
   }, []);
+
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const res = await axios.get(
+        "https://task-manager-full-stack-website.onrender.com/api/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const userData = res.data.data.user;
+
+      setUser(userData);
+      setPreview(userData.avatar);
+    } catch (error) {
+      setMessage("Please login first");
+    }
+  };
+
+  // Upload Avatar
+  const handleUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // instant preview
+    const localPreview = URL.createObjectURL(file);
+    setPreview(localPreview);
+
+    const formData = new FormData();
+    formData.append("avatar", file);
+
+    try {
+      setLoading(true);
+
+      const token = localStorage.getItem("accessToken");
+
+      const res = await axios.post(
+        "https://task-manager-full-stack-website.onrender.com/api/update-avatar",
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const updatedUser = res.data.data.user;
+
+      setUser(updatedUser);
+      setPreview(updatedUser.avatar);
+
+    } catch (error) {
+      alert("Upload failed");
+      fetchProfile();
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (!user) {
     return (
       <div className="profile-wrapper">
         <div className="profile-card">
-          <div className="profile-avatar">🔒</div>
-          <p className="profile-message">{message || "Login to view profile"}</p>
-          <NavLink to="/login" className="profile-login-link">Go to Login</NavLink>
+          <h2>{message || "Login Required"}</h2>
+
+          <NavLink to="/login" className="upload-btn">
+            Go to Login
+          </NavLink>
         </div>
       </div>
     );
@@ -41,23 +93,45 @@ const Profile = () => {
   return (
     <div className="profile-wrapper">
       <div className="profile-card">
-        <div className="profile-avatar">👤</div>
+
+        {/* Avatar */}
+        <img
+          src={preview || "https://via.placeholder.com/120"}
+          alt="avatar"
+          className="profile-image"
+        />
+
         <h2>My Profile</h2>
 
+        {/* Upload Button */}
+        <label className="upload-btn">
+          {loading ? "Uploading..." : "Change Photo"}
+
+          <input
+            type="file"
+            accept="image/*"
+            hidden
+            disabled={loading}
+            onChange={handleUpload}
+          />
+        </label>
+
+        {/* Details */}
         <div className="profile-item">
-          <span className="profile-icon">👤</span>
-          <span className="profile-text">{user.username}</span>
+          <span>👤 Username:</span>
+          <span>{user.username}</span>
         </div>
 
         <div className="profile-item">
-          <span className="profile-icon">📛</span>
-          <span className="profile-text">{user.fullname}</span>
+          <span>📛 Full Name:</span>
+          <span>{user.fullname}</span>
         </div>
 
         <div className="profile-item">
-          <span className="profile-icon">📧</span>
-          <span className="profile-text">{user.email}</span>
+          <span>📧 Email:</span>
+          <span>{user.email}</span>
         </div>
+
       </div>
     </div>
   );
