@@ -19,7 +19,7 @@ const Profile = () => {
       const token = localStorage.getItem("accessToken");
 
       const res = await axios.get(
-        "https://task-manager-full-stack-website.onrender.com/api/profile",
+        "http://localhost:8000/api/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,7 +54,7 @@ const Profile = () => {
       const token = localStorage.getItem("accessToken");
 
       const res = await axios.post(
-        "https://task-manager-full-stack-website.onrender.com/api/update-avatar",
+        "http://localhost:8000/api/update-avatar",
         formData,
         {
           headers: {
@@ -70,9 +70,12 @@ const Profile = () => {
 
     } catch (error) {
       alert("Upload failed");
-      fetchProfile();
+      console.log(error);
+      console.log(error.response?.data);
+      console.log(error.response?.status);
     } finally {
       setLoading(false);
+      fetchProfile();
     }
   };
 
@@ -96,7 +99,7 @@ const Profile = () => {
 
         {/* Avatar */}
         <img
-          src={preview || "https://via.placeholder.com/120"}
+          src={preview || "/default-avatar.png"}
           alt="avatar"
           className="profile-image"
         />
