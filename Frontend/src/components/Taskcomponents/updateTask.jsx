@@ -10,7 +10,7 @@ export const UpdateTask = ({task,onUpdate}) => {
   const handleUpdate = async(e) =>{
     e.preventDefault()
     try {
-      const res = await axios.put(`https://task-manager-full-stack-website.onrender.com/api/updateTask/${task._id}`,{  
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/api/updateTask/${task._id}`,{  
          title , description , status 
       },{
         headers:{

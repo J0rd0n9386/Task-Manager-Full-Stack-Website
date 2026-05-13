@@ -54,7 +54,7 @@ const Profile = () => {
       const token = localStorage.getItem("accessToken");
 
       const res = await axios.post(
-        "http://localhost:8000/api/update-avatar",
+        `${import.meta.env.VITE_API_URL}/api/update-avatar`,
         formData,
         {
           headers: {

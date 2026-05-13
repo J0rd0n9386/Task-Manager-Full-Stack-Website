@@ -20,7 +20,7 @@ const RegisterUser = () => {
 
     try {
       const result = await axios.post(
-        "https://task-manager-full-stack-website.onrender.com/api/register",  
+        `${import.meta.env.VITE_API_URL}/api/register`,  
         { email, password, fullname},
         
       );

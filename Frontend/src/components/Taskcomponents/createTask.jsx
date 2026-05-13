@@ -25,7 +25,7 @@ const CreateTask = () => {
 
     setLoading(true);
    try{
-    const result =  await axios.post('https://task-manager-full-stack-website.onrender.com/api/createTask',{
+    const result =  await axios.post(`${import.meta.env.VITE_API_URL}/api/createTask`,{
       title,
       description,
       status

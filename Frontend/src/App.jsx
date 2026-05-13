@@ -7,7 +7,6 @@ import RegisterUser from './components/UserComponents/registerUser'
 import Profile from './components/UserComponents/profile'
 import Logout from './components/UserComponents/Logout'
 import CreateTask from './components/Taskcomponents/createTask'
-import DeleteTask from './components/Taskcomponents/deleteTask'
 import UpdateTask from './components/Taskcomponents/updateTask'
 import SearchTask from './components/Taskcomponents/searchTask'
 import './App.css'
@@ -54,14 +53,6 @@ const router = createBrowserRouter([
       {
         path: "createTask",
         element: <CreateTask />
-      },
-      {
-        path: "deleteTask",
-        element: <DeleteTask />
-      },
-      {
-        path: "updateTask",
-        element: <UpdateTask />
       },
       {
         path: "searchTask",

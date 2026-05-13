@@ -8,7 +8,7 @@ const Logout = () => {
   useEffect(() => {
     const doLogout = async () => {
       try { await axios.post(
-          "https://task-manager-full-stack-website.onrender.com/api/logout",
+          `${import.meta.env.VITE_API_URL}/api/logout`,
           {},
           { withCredentials: true }
         );

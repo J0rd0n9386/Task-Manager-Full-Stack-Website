@@ -3,6 +3,8 @@ import axios from 'axios'
 import '../../App.css'; 
 import UpdateTask from './updateTask'
 
+
+
 const GetAllTask = ({refresh}) => {
    const [tasks, setTasks] = useState([])
    const [loading, setLoading] = useState(true)
@@ -13,7 +15,7 @@ const GetAllTask = ({refresh}) => {
 useEffect(() => {
     const fetchdata = async ()=>{
      try {
-        const res = await axios.get("https://task-manager-full-stack-website.onrender.com/api/getTasks",{
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/getTasks`,{
             headers:{
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
@@ -33,7 +35,7 @@ const deleteTask = async (taskId) => {
     if (!window.confirm("Are you sure you want to delete this task?")) return
 
     try {
-        await axios.delete(`https://task-manager-full-stack-website.onrender.com/api/deleteTask/${taskId}`, {
+        await axios.delete(`${import.meta.env.VITE_API_URL}/api/deleteTask/${taskId}`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('accessToken')}`
             }
