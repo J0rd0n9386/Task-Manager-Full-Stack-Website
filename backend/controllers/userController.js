@@ -6,6 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { ApiError } from "../utils/ApiError.js";
 import { uploadOnCloudinary } from "../utils/cloudinary.js";
+import Task from "../models/Task.model.js";
 dotenv.config();
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -181,6 +182,74 @@ const Logout = asyncHandler(async (req, res) => {
 
 const verifyUser = asyncHandler(async(req,res)=>{
   return res.status(200).json({Auth:true , user: req.user});
-})
+});
+////////////////////////////////////////////////////////////////////////////////////
+const Admin = asyncHandler(async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
 
-export { registerUser, Login, Logout, profile,verifyUser,updateAvatar };
+  const tasks = await Task.find()
+    .populate("owner", "fullname email")
+    .sort({ createdAt: -1 })
+    .skip(skip)
+    .limit(limit);
+
+  const total = await Task.countDocuments();
+
+  res.status(200).json({
+    success: true,
+    count: tasks.length,
+    total,
+    page,
+    pages: Math.ceil(total / limit),
+    tasks,
+  });
+});
+const AdminLogin = asyncHandler(async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    throw new ApiError(400, "Please enter all fields");
+  }
+
+  let user = await User.findOne({ email });
+
+  if (!user) {
+    throw new ApiError(404, "Admin not found");
+  }
+
+ 
+  if (user.role !== "admin") {
+    throw new ApiError(403, "Unauthorized Admin");
+  }
+
+ 
+  const isPasswordValid = await bcrypt.compare(
+    password,
+    user.password
+  );
+
+  if (!isPasswordValid) {
+    throw new ApiError(401, "Invalid Password");
+  }
+
+  const { accessToken, refreshToken } =
+    await generateAccessAndRefreshTokens(user._id);
+
+  user = user.toObject();
+  delete user.password;
+
+  return res.status(200).json(
+    new ApiResponse(
+      200,
+      {
+        user,
+        accessToken,
+        refreshToken,
+      },
+      "Admin Login Successful"
+    )
+  );
+});
+export { registerUser, Login, Logout, profile,verifyUser,updateAvatar,Admin , AdminLogin};

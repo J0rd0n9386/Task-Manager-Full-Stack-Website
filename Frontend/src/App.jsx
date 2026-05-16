@@ -9,6 +9,8 @@ import Logout from './components/UserComponents/Logout'
 import CreateTask from './components/Taskcomponents/createTask'
 import UpdateTask from './components/Taskcomponents/updateTask'
 import SearchTask from './components/Taskcomponents/searchTask'
+import AdminDashboard from './components/AdminDashboard'
+import AdminLogin from './components/AdminLogin'
 import './App.css'
 
 
@@ -57,7 +59,16 @@ const router = createBrowserRouter([
       {
         path: "searchTask",
         element: <SearchTask />
-      }
+      },
+      {
+        path: "AdminLogin",
+        element: <AdminLogin />
+      },
+      {
+        path: "AdminDashboard",
+        element: <AdminDashboard />
+      },
+      
     ]
   }
 ])

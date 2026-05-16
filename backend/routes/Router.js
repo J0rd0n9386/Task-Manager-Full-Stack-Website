@@ -17,7 +17,9 @@ import {
 import { verifyJWT } from "../middleware/authmiddleware.js";
 import { updateAvatar } from "../controllers/userController.js";
 import { upload } from "../middleware/multer.js";
-
+import { Admin } from "../controllers/userController.js";
+import { isAdmin } from "../middleware/Adminmiddleware.js";
+import { AdminLogin } from "../controllers/userController.js";
 const router = express.Router();
 
 // User routes
@@ -37,5 +39,6 @@ router.route("/getTaskById/:_id").get(verifyJWT, getTaskById);
 router.route("/toggleTaskStatus/:_id").post(verifyJWT, toggleTaskStatus);
 router.route("/verify").get(verifyJWT, verifyUser);
 router.route("/update-avatar").post(verifyJWT,upload.single("avatar"), updateAvatar);
-
+router.route("/admin/tasks").get(verifyJWT, isAdmin, Admin);
+router.route("/admin/login").post(AdminLogin);
 export default router;

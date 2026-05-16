@@ -24,20 +24,14 @@ const TaskSchema = new Schema(
     enum:["pending","completed","in-progress"],
     default:"pending"
   },
-  createdAt:{
-    type:Date,
-    default:Date.now
-  },
-  updatedAt:{
-    type:Date,
-    default:Date.now
-  },
+  
+  
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true
   }
-})
+}, {timestamps: true})
 
 const Task = mongoose.model("Task", TaskSchema);
 export default Task;

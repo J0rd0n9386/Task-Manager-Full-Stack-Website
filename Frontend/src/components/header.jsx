@@ -16,11 +16,14 @@ const Header = () => {
               <NavLink to="/createTask">Create Task</NavLink>
               <NavLink to="/profile">Profile</NavLink>
               <NavLink to="/logout">Logout</NavLink>
+              
             </>
           ) : (
             <>
               <NavLink to="/Login">Login</NavLink>
               <NavLink to="/registerUser">Register</NavLink>
+              <NavLink to="/AdminLogin">Admin Login</NavLink>
+
             </>
           )}
         </nav>

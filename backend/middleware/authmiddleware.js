@@ -6,24 +6,33 @@ import { User } from "../models/User.model.js";
 const secretToken = process.env.ACCESS_TOKEN_SECRET;
 
 const verifyJWT = asyncHandler(async (req, res, next) => {
+
   const token =
-    req.cookies?.accessToken || req.headers.authorization?.split(" ")[1];
+    req.cookies?.accessToken ||
+    req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
     throw new ApiError(401, "Token is not present");
   }
 
-  const decodedToken = jwt.verify(token, secretToken);
-   console.log("Secret:", process.env.ACCESS_TOKEN_SECRET)
+  try {
 
-  const user = await User.findById(decodedToken._id);
+    const decodedToken = jwt.verify(token, secretToken);
 
-  if (!user) {
-    throw new ApiError(404, "User not found");
+    const user = await User.findById(decodedToken._id).select("-password");
+
+    if (!user) {
+      throw new ApiError(404, "User not found");
+    }
+
+    req.user = user;
+
+    next();
+
+  } catch (error) {
+
+    throw new ApiError(401, "Invalid or Expired Token");
   }
-
-  req.user = user;
-  next();
 });
 
 export { verifyJWT };
