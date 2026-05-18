@@ -14,19 +14,19 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/login`, 
-        {email,password},
+      const res = await axios.post(
+        `${import.meta.env.VITE_API_URL}/api/admin/login`,
+        { email, password },
         {
-        headers: { "Content-Type": "application/json" }
-      });
+          headers: { "Content-Type": "application/json" },
+        },
+      );
 
       const data = res.data;
       console.log("Login response:", data);
-      console.log(
-  `${import.meta.env.VITE_API_URL}/api/admin/login`
-);
+      console.log(`${import.meta.env.VITE_API_URL}/api/admin/login`);
 
-      if (!res.ok || !data.success) {
+      if (!data.success) {
         throw new Error(data.message || "Login failed");
       }
 
@@ -45,28 +45,38 @@ const AdminLogin = () => {
 
       window.location.href = "/AdminDashboard";
     } catch (err) {
-      setError(err.message);
-      console.error("Login error:", err);
-    } finally {
-      setLoading(false);
+     console.error("Login error:", err);
+
+  console.log("ERROR RESPONSE:", err.response?.data);
+
+  setError(
+    err.response?.data?.message ||
+    err.message ||
+    "Something went wrong"
+  );
     }
   };
 
   return (
     <div className="premium-container">
-      
       <div className="ambient-glow top-left"></div>
       <div className="ambient-glow bottom-right"></div>
 
-      
       <div className="glass-card">
-        
-        
         <div className="header-section">
           <div className="icon-box">
-            
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+            <svg
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+              />
             </svg>
           </div>
           <h1 className="title">TaskMaster Admin</h1>
@@ -77,7 +87,11 @@ const AdminLogin = () => {
         {error && (
           <div className="error-alert">
             <svg fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
             </svg>
             {error}
           </div>
@@ -112,9 +126,23 @@ const AdminLogin = () => {
           <button type="submit" disabled={loading} className="submit-btn">
             {loading ? (
               <>
-                <svg className="spinner" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="spinner"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 Authenticating...
               </>
@@ -151,7 +179,7 @@ export default AdminLogin;
 //       });
 
 //       const data = await res.json();
-//       console.log("Login response:", data); 
+//       console.log("Login response:", data);
 
 //       if (!res.ok || !data.success) {
 //         throw new Error(data.message || "Login failed");
@@ -168,7 +196,7 @@ export default AdminLogin;
 //       }
 
 //       localStorage.setItem("token", token);
-//       console.log("Token saved:", token); 
+//       console.log("Token saved:", token);
 
 //       window.location.href = "/AdminDashboard";
 //     } catch (err) {
