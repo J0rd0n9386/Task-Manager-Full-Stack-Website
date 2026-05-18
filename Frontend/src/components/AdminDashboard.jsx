@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../App.css"; // Link to the new CSS
+import "../App.css"; 
+import axios from "axios";
 
 const AdminDashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -20,10 +21,9 @@ const AdminDashboard = () => {
         throw new Error("Please login first. Token not found.");
       }
 
-      const res = await fetch(
-        `http://localhost:8000/api/admin/tasks?page=${currentPage}&limit=10`,
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/admin/tasks?page=${currentPage}&limit=10`,
         {
-          method: "GET",
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
@@ -31,7 +31,7 @@ const AdminDashboard = () => {
         }
       );
 
-      const data = await res.json();
+      const data = res.data;
 
       if (!res.ok) {
         throw new Error(data.message || "Failed to fetch tasks");
@@ -64,13 +64,13 @@ const AdminDashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Ambient background glows */}
+      
       <div className="dash-glow-1"></div>
       <div className="dash-glow-2"></div>
 
       <div className="dashboard-content">
         
-        {/* Header */}
+        
         <div className="dash-header">
           <h1 className="dash-title">Admin Dashboard</h1>
           <div className="stat-box">
@@ -79,7 +79,7 @@ const AdminDashboard = () => {
           </div>
         </div>
 
-        {/* Error State */}
+        
         {error && (
           <div className="error-alert" style={{ marginBottom: '2rem' }}>
              <svg fill="currentColor" viewBox="0 0 20 20">
@@ -89,7 +89,7 @@ const AdminDashboard = () => {
           </div>
         )}
 
-        {/* Loading State */}
+        
         {loading ? (
           <div className="loader-container">
             <div className="premium-spinner"></div>
@@ -97,13 +97,13 @@ const AdminDashboard = () => {
           </div>
         ) : (
           <>
-            {/* Task Grid */}
+            
             <div className="task-grid">
               {tasks.map((task, index) => (
                 <div
                   key={task._id}
                   className="task-card"
-                  style={{ animationDelay: `${index * 0.08}s` }} // ✨ Staggered animation
+                  style={{ animationDelay: `${index * 0.08}s` }} 
                 >
                   <div className="task-card-header">
                     <h2 className="task-title">{task.title}</h2>

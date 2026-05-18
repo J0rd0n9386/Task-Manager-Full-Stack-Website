@@ -15,7 +15,7 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@hookform/resolvers": "^3.3.2",
-    "axios": "^1.15.2",
+    "axios": "^1.16.1",
     "dayjs": "^1.11.10",
     "framer-motion": "^10.16.16",
     "js-cookie": "^3.0.5",

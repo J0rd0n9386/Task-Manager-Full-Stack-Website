@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "../App.css";
+import axios from "axios";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");
@@ -13,14 +14,17 @@ const AdminLogin = () => {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:8000/api/admin/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/admin/login`, 
+        {email,password},
+        {
+        headers: { "Content-Type": "application/json" }
       });
 
-      const data = await res.json();
+      const data = res.data;
       console.log("Login response:", data);
+      console.log(
+  `${import.meta.env.VITE_API_URL}/api/admin/login`
+);
 
       if (!res.ok || !data.success) {
         throw new Error(data.message || "Login failed");
@@ -36,7 +40,7 @@ const AdminLogin = () => {
         throw new Error("Token not found in response");
       }
 
-      localStorage.setItem("token", token);
+      localStorage.setItem("token", `${token}`);
       console.log("Token saved:", token);
 
       window.location.href = "/AdminDashboard";
@@ -50,17 +54,17 @@ const AdminLogin = () => {
 
   return (
     <div className="premium-container">
-      {/* --- Ambient Background Glows --- */}
+      
       <div className="ambient-glow top-left"></div>
       <div className="ambient-glow bottom-right"></div>
 
-      {/* --- Premium Glassmorphic Card --- */}
+      
       <div className="glass-card">
         
-        {/* Header Section */}
+        
         <div className="header-section">
           <div className="icon-box">
-            {/* Task Manager Icon (SVG) */}
+            
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>
