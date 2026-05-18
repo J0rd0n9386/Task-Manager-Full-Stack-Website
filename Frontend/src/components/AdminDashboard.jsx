@@ -33,7 +33,7 @@ const AdminDashboard = () => {
 
       const data = res.data;
 
-      if (!res.ok) {
+      if (!data.success) {
         throw new Error(data.message || "Failed to fetch tasks");
       }
 
@@ -42,7 +42,13 @@ const AdminDashboard = () => {
       setPages(data.pages || 1);
       setTotal(data.total || 0);
     } catch (err) {
-      setError(err.message);
+      console.log(err.response?.data);
+
+setError(
+  err.response?.data?.message ||
+  err.message ||
+  "Failed to fetch tasks"
+);
       if (
         err.message.includes("Token") ||
         err.message.includes("unauthorized") ||
