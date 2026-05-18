@@ -18,7 +18,7 @@ import { verifyJWT } from "../middleware/authmiddleware.js";
 import { updateAvatar } from "../controllers/userController.js";
 import { upload } from "../middleware/multer.js";
 import { Admin } from "../controllers/userController.js";
-import { isAdmin } from "../middleware/Adminmiddleware.js";
+import { isAdmin } from "../middleware/AdminMiddleware.js";
 import { AdminLogin } from "../controllers/userController.js";
 const router = express.Router();
 
